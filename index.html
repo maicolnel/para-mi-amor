@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Musica para el amor de mi vida </title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Blackadder+ITC&display=swap');
+
+    body {
+  background-image: url('love.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Blackadder ITC', cursive;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+
+
+    .player {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad del fondo */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .player button {
+      background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad de los botones */
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .player button:hover {
+      background-color: rgba(0, 0, 0, 0.7); /* Ajusta la opacidad de los botones al hover */
+    }
+
+    h1 {
+      font-size: 6em;
+      margin-top: 20%;
+    }
+
+    .song-title {
+      font-size: 3em; /* Ajusta el tamaño del texto del título de la canción */
+      font-weight: bold; /* Ajusta el peso del texto del título de la canción */
+      margin-bottom: 10px; /* Ajusta el espacio entre el título de la canción y los botones */
+    }
+  </style>
+</head>
+<body>
+  <div class="player">
+    <h1><span style="font-size: 50px;">&hearts; Te amo Cati &hearts;</span></h1>
+    <div class="song-title">Andalucìa</div>
+    <audio id="player" controls>
+      <source src="Andalucìa.mp3" type="audio/mp3">
+      Tu navegador no soporta el elemento &lt;audio&gt;.
+    </audio>
+    <button id="play-pause" onclick="playPause()">Play/Pause</button>
+    <button id="next" onclick="nextSong()">Siguiente</button>
+    <button id="prev" onclick="prevSong()">Anterior</button>
+  </div>
+
+  <script>
+    let audio = document.getElementById('player');
+    let playPauseButton = document.getElementById('play-pause');
+    let nextButton = document.getElementById('next');
+    let prevButton = document.getElementById('prev');
+    let songIndex = 0;
+    let songs = [
+      { src: 'Andalucìa.mp3', title: 'Andalucìa' },
+      { src: 'Despacito.mp3', title: 'Despacito' },
+      { src: 'Llegaste Tù.mp3', title: 'Llegaste Tù' },
+      { src: 'Que quieres de mi.mp3', title: 'Que quieres de mi' },
+      { src: 'A Dònde Vamos.mp3', title: 'A Dònde Vamos' },
+      { src: 'MEDIA LUNA.mp3', title: 'Media Luna' },
+      { src: 'ANTES DE TI.mp3', title: 'Antes de ti' },
+      { src: 'lagos monaco.mp3', title: 'm<3 favorita' }
+    ];
+
+    function playPause() {
+      if (audio.paused) {
+        audio.play();
+        playPauseButton.textContent = 'Pause';
+      } else {
+        audio.pause();
+        playPauseButton.textContent = 'Play';
+      }
+    }
+
+    function nextSong() {
+      songIndex++;
+      if (songIndex >= songs.length) {
+        songIndex = 0;
+      }
+      audio.src = songs[songIndex].src;
+      document.querySelector('.song-title').textContent = songs[songIndex].title;
+      audio.play();
+      playPauseButton.textContent = 'Pause';
+    }
+
+    function prevSong() {
+      songIndex--;
+      if (songIndex < 0) {
+        songIndex = songs.length - 1;
+      }
+      audio.src = songs[songIndex].src;
+      document.querySelector('.song-title').textContent = songs[songIndex].title;
+      audio.play();
+      playPauseButton.textContent = 'Pause';
+    }
+  </script>
+</body>
+</html>
